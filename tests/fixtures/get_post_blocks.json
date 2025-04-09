@@ -1,0 +1,14 @@
+{
+    "data": {
+        "post_id": 123,
+        "blocks": [
+            {
+                "blockName": "core/paragraph",
+                "attrs": {},
+                "innerBlocks": [],
+                "innerHTML": "<p>Example paragraph block</p>",
+                "innerContent": ["<p>Example paragraph block</p>"]
+            }
+        ]
+    }
+} 

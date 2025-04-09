@@ -1,0 +1,13 @@
+{
+    "data": {
+        "attachment_id": 456,
+        "attachment_url": "https://example.com/wp-content/uploads/2024/01/example.jpg",
+        "filesize": 1024000,
+        "width": 1920,
+        "height": 1080,
+        "sizes": {
+            "large": "https://example.com/wp-content/uploads/2024/01/example-large.jpg",
+            "thumbnail": "https://example.com/wp-content/uploads/2024/01/example-thumbnail.jpg"
+        }
+    }
+} 

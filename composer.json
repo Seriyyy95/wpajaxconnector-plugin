@@ -1,0 +1,9 @@
+{
+    "name": "wpajaxconnector/wpajaxconnector-plugin",
+    "autoload": {
+        "psr-4": {
+            "WPAjaxConnector\\WPAjaxConnectorPlugin\\": "src/"
+        }
+    },
+    "require": {}
+}

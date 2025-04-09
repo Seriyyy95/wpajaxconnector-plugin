@@ -1,0 +1,10 @@
+{
+    "posts": [
+        {
+            "post_id": 123,
+            "url": "https://example.com/post-123",
+            "title": "Example Post"
+        }
+    ],
+    "has_more": false
+} 
