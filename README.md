@@ -1,4 +1,4 @@
-# WPConnector Plugin
+# WPAJaxConnector Plugin
 
 ⚠️ This plugin is currently in Alpha stage and therefore may contain bugs and errors. Use with caution.
 
@@ -22,7 +22,14 @@ The plugin was originally created for my blog many years ago, so it may contain 
 
 ## Installing & Authorization
 
-In order to use the plugin you need to install it on your site, then open **Settings** -> **WP Connector Settings** and create an access key for your user:
+In order to use the plugin you need to install it on your site. You can clone it from this github repository:
+
+```bash
+cd wp-content/plugins
+git clone https://github.com/Seriyyy95/wpajaxconnector-plugin.git
+```
+
+Then open **Settings** -> **WPAjaxConnector Settings** and create an access key for your user:
 
 ![](images/create-key-1.png)
 
