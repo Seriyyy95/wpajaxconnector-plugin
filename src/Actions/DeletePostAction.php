@@ -26,7 +26,7 @@ class DeletePostAction extends AbstractAction
             return new PermissionDeniedResponse();
         }
 
-        $postId = $_REQUEST["post_id"] ?? null;
+        $postId = $_REQUEST["post_id"];
         $result = wp_delete_post($postId);
 
         if (false !== $result) {

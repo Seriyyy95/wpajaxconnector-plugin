@@ -4,11 +4,11 @@ namespace WPAjaxConnector\WPAjaxConnectorPlugin;
 
 class SettingsPage
 {
-    public const ADD_KEY_ACTION_NAME = 'wpajaxconnector_add_key';
-    public const DELETE_KEY_ACTION_NAME = 'wpajaxconnector_delete_key';
+    public const ADD_KEY_ACTION_NAME = 'wpconnector_add_key';
+    public const DELETE_KEY_ACTION_NAME = 'wpconnector_delete_key';
 
-    const SUCCESS_MESSAGE_KEY = 'wpajaxconnector_success';
-    const FAIL_MESSAGE_KEY = 'wpajaxconnetor_fail';
+    const SUCCESS_MESSAGE_KEY = 'wpconnector_success';
+    const FAIL_MESSAGE_KEY = 'wpconnetor_fail';
 
     public function __construct(
         private Authenticator $authenticator
@@ -18,10 +18,10 @@ class SettingsPage
     {
         add_action('admin_menu', function () {
             add_options_page(
-                'WPAjaxConnector Settings',
-                'WPAjaxConnector Settings',
+                'WPConnector Settings',
+                'WPConnector Settings',
                 'manage_options',
-                'WPAjaxConnector',
+                'WPConnector',
                 function () {
                     $users = $this->authenticator->listUsersWithKeys();
 

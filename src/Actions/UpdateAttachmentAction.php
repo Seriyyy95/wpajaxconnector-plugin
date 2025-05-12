@@ -7,6 +7,7 @@ namespace WPAjaxConnector\WPAjaxConnectorPlugin\Actions;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\AbstractResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\BadRequestResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\PermissionDeniedResponse;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\UnprocessableEntityErrorResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\WrappedAttachmentDataResponse;
 
 class UpdateAttachmentAction extends AbstractAction
@@ -31,6 +32,11 @@ class UpdateAttachmentAction extends AbstractAction
         }
 
         $attachmentId = $_POST['attachment_id'] ?? null;
+
+        if (empty($attachmentId)) {
+            return new UnprocessableEntityErrorResponse("Attachment ID can't be empty");
+        }
+
         $postId = get_post($attachmentId)?->post_parent;
         if ($postId !== null) {
             $date = get_the_date('Y/m', $postId);
@@ -68,21 +74,8 @@ class UpdateAttachmentAction extends AbstractAction
         }
 
         $attach_data = wp_generate_attachment_metadata($attachmentId, $attachmentFile);
-        //can be false, it is intended behavior, if does not work - disable cache!
-        $metaUpdated = wp_update_attachment_metadata($attachmentId, $attach_data);
+        wp_update_attachment_metadata($attachmentId, $attach_data);
 
-        $attachmentUrl = wp_get_attachment_url($attachmentId);
-        $thumbnailUrl = wp_get_attachment_image_url($attachmentId, 'thumbnail');
-        $largeUrl = wp_get_attachment_image_url($attachmentId, 'large');
-
-        return new WrappedAttachmentDataResponse(
-            attachmentId: intval($attachmentId),
-            attachmentUrl: $attachmentUrl,
-            size: $meta['filesize'],
-            width: $meta['width'],
-            height: $meta['height'],
-            largeUrl: $largeUrl,
-            thumbnailUrl: $thumbnailUrl,
-        );
+        return WrappedAttachmentDataResponse::fromAttachmentId(intval($attachmentId));
     }
 }

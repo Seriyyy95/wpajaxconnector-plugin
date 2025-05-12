@@ -8,6 +8,7 @@ use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\AbstractResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\BadRequestResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\PermissionDeniedResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\SuccessResponse;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Utils\AttachmentFinder;
 
 class DeleteAttachmentAction extends AbstractAction
 {
@@ -26,8 +27,24 @@ class DeleteAttachmentAction extends AbstractAction
         }
 
         $attachmentId = $_POST["attachment_id"] ?? null;
-        $result = wp_delete_attachment($attachmentId);
 
+        $url = wp_get_attachment_url($attachmentId);
+
+        $attachments = AttachmentFinder::findAttachmentsByUrl($url);
+
+        if (count($attachments) === 1) {
+            $result = wp_delete_attachment($attachmentId);
+        } else {
+            global $wpdb;
+
+            $wpdb->query(
+                $wpdb->prepare(
+                    "DELETE FROM $wpdb->posts, $wpdb->postmeta WHERE $wpdb->posts.ID = %d OR $wpdb->postmeta.post_id = %d",
+                    $attachmentId,
+                    $attachmentId
+                )
+            );
+        }
         return new SuccessResponse();
     }
 }

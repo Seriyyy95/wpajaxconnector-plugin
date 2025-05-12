@@ -7,6 +7,7 @@ namespace WPAjaxConnector\WPAjaxConnectorPlugin\Actions;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\AbstractResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\BadRequestResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\PermissionDeniedResponse;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\UnprocessableEntityErrorResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\WrappedAttachmentDataResponse;
 
 class AddAttachmentAction extends AbstractAction
@@ -38,6 +39,11 @@ class AddAttachmentAction extends AbstractAction
         $uploadDirData = wp_upload_dir($date);
         $imagePath = $uploadDirData["path"];
         $attachmentFile = $imagePath . "/" . $imageName;
+
+        if(file_exists($attachmentFile)){
+            return new UnprocessableEntityErrorResponse("File for this attachment already exists");
+        }
+
         file_put_contents($attachmentFile, $imageData);
 
         $url = $uploadDirData['url'] . "/$imageName";
