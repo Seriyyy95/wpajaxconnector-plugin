@@ -38,9 +38,13 @@ class AddAttachmentAction extends AbstractAction
         $imageName = $_REQUEST["attachment_name"];
         $uploadDirData = wp_upload_dir($date);
         $imagePath = $uploadDirData["path"];
-        $attachmentFile = $imagePath . "/" . $imageName;
+        try {
+            $attachmentFile = $this->resolveUniqueFileName($imagePath, $imageName);
+        } catch (\RuntimeException $e) {
+            return new UnprocessableEntityErrorResponse($e->getMessage());
+        }
 
-        if(file_exists($attachmentFile)){
+        if (file_exists($attachmentFile)) {
             return new UnprocessableEntityErrorResponse("File for this attachment already exists");
         }
 
@@ -70,5 +74,32 @@ class AddAttachmentAction extends AbstractAction
         wp_update_attachment_metadata($attach_id, $attach_data);
 
         return WrappedAttachmentDataResponse::fromAttachmentId(intval($attach_id));
+    }
+
+    private function resolveUniqueFileName(string $imagePath, string $imageName): string
+    {
+        if (false === $this->imageExists($imagePath, $imageName)) {
+            return $imagePath . '/' . $imageName;
+        }
+
+        $nameParts = pathinfo($imageName);
+        $name = $nameParts['filename']; // "document"
+        $extension = $nameParts['extension']; // "pdf"
+
+        for ($i = 0; $i < 1000; $i++) {
+            $newName = $name . '-' . $i . '.' . $extension;
+            if (false === $this->imageExists($imagePath, $newName)) {
+                return $imagePath . '/' . $newName;
+            }
+        }
+
+        throw new \RuntimeException('Could not resolve unique file name');
+    }
+
+    private function imageExists(string $imagePath, string $imageName): bool
+    {
+        $attachmentFile = $imagePath . "/" . $imageName;
+
+        return file_exists($attachmentFile);
     }
 }

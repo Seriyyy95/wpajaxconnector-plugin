@@ -34,6 +34,7 @@ class SetPostBlocksAction extends AbstractAction
         $post_id = intval($_REQUEST['post_id']);
 
         $blocksString = stripslashes($_REQUEST['blocks']);
+
         try {
             $blocks = json_decode($blocksString, true, 512, JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
