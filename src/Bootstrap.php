@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace WPAjaxConnector\WPAjaxConnectorPlugin;
 
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\AddAttachmentAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\AddCategoryAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\AddPostAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\AddTagAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\DeleteAttachmentAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\DeletePostAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\GetAttachmentAction;
@@ -22,9 +24,12 @@ use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostCategoryAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostContentAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostMetaAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostParentAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTagsAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTranslation;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostThumbnailAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTitleAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermNameAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermSlugAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\UpdateAttachmentAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\UpdatePostAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostBlocksAction;
@@ -45,6 +50,8 @@ class Bootstrap
         SetPostBlocksAction::class,
         SetPostTranslation::class,
         AddAttachmentAction::class,
+        AddCategoryAction::class,
+        AddTagAction::class,
         UpdateAttachmentAction::class,
         DeleteAttachmentAction::class,
         GetAttachmentAction::class,
@@ -53,8 +60,11 @@ class Bootstrap
         SetPostContentAction::class,
         SetPostParentAction::class,
         SetPostCategoryAction::class,
+        SetPostTagsAction::class,
         SetPostTitleAction::class,
         SetPostMetaAction::class,
+        SetTermNameAction::class,
+        SetTermSlugAction::class,
         DeletePostAction::class,
         GetPostTranslationsAction::class,
         GetPostThumbnailAction::class,
