@@ -31,8 +31,8 @@ use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTitleAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermNameAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermSlugAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\UpdateAttachmentAction;
-use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\UpdatePostAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostBlocksAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\UpdateSitemapAction;
 
 class Bootstrap
 {
@@ -68,6 +68,7 @@ class Bootstrap
         DeletePostAction::class,
         GetPostTranslationsAction::class,
         GetPostThumbnailAction::class,
+        UpdateSitemapAction::class
     ];
 
     public function __construct()
