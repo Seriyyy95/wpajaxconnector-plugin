@@ -30,10 +30,13 @@ class AddCategoryAction extends AbstractAction
         $categoryName = $_REQUEST["category_name"];
         $categorySlug = $_REQUEST["category_slug"];
 
-        $id = category_exists($categoryName, 0);
+        $category = get_term_by('slug', $categorySlug, 'category');
+        $id = $category?->term_id;
 
         if ($id) {
-            return new ShortCategoryResponse(categoryId: intval($id));
+            return new ShortCategoryResponse(
+                categoryId: intval($id), url: get_category_link($id)
+            );
         }
 
         $categoryId = wp_insert_category(
@@ -49,6 +52,9 @@ class AddCategoryAction extends AbstractAction
             return new InternalServerErrorResponse($categoryId->get_error_message());
         }
 
-        return new ShortCategoryResponse(categoryId: $categoryId);
+        return new ShortCategoryResponse(
+            categoryId: $categoryId,
+            url: get_category_link($categoryId)
+        );
     }
 }

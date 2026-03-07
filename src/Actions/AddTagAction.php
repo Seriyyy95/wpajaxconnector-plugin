@@ -23,29 +23,25 @@ class AddTagAction extends AbstractAction
             return new BadRequestResponse();
         }
 
+        if (!isset($_REQUEST["tag_slug"])) {
+            return new BadRequestResponse();
+        }
+
         if (!user_can($userId, 'edit_posts')) {
             return new PermissionDeniedResponse();
         }
 
         $tagName = $_REQUEST["tag_name"];
-        $lowerTagName = mb_strtolower($_REQUEST["tag_name"]);
-        $upperTagName = mb_strtoupper($_REQUEST["tag_name"]);
         $tagSlug = $_REQUEST["tag_slug"];
 
-        $existsData = tag_exists($tagName);
-        if ($existsData) {
-            return new TagResponse(tagId: intval($existsData['term_id']));
-        }
+        $tag = get_term_by('slug', $tagSlug, 'post_tag');
+        $id = $tag?->term_id;
 
-        //Also check if there is a tag with lower and upper case
-        $existsLowerData = tag_exists($lowerTagName);
-        if ($existsLowerData) {
-            return new TagResponse(tagId: intval($existsLowerData['term_id']));
-        }
-
-        $existsUpperData = tag_exists($upperTagName);
-        if ($existsUpperData) {
-            return new TagResponse(tagId: intval($existsUpperData['term_id']));
+        if ($id) {
+            return new TagResponse(
+                tagId: intval($id),
+                url: get_tag_link($id)
+            );
         }
 
         $termData = wp_insert_term(
@@ -61,6 +57,9 @@ class AddTagAction extends AbstractAction
             return new InternalServerErrorResponse($termData->get_error_message());
         }
 
-        return new TagResponse(tagId: intval($termData['term_id']));
+        return new TagResponse(
+            tagId: intval($termData['term_id']),
+            url: get_tag_link($termData['term_id']),
+        );
     }
 }

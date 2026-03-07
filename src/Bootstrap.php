@@ -17,22 +17,26 @@ use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\GetPostKeywords;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\GetPostMetaAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\GetPostThumbnailAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\GetPostTranslationsAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\GetTermDataAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\IsAccessibleAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\ListAttachmentsAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\ListPostsAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostAuthorAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostCategoryAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostContentAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostMetaAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostParentAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTagsAction;
-use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTranslation;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTranslationAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostThumbnailAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTitleAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermDescriptionAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermNameAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermSlugAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\UpdateAttachmentAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostBlocksAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\UpdateSitemapAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetTermTranslationAction;
 
 class Bootstrap
 {
@@ -47,8 +51,9 @@ class Bootstrap
         GetPostMetaAction::class,
         GetPostBlocksAction::class,
         GetPostKeywords::class,
+        GetTermDataAction::class,
         SetPostBlocksAction::class,
-        SetPostTranslation::class,
+        SetPostTranslationAction::class,
         AddAttachmentAction::class,
         AddCategoryAction::class,
         AddTagAction::class,
@@ -65,6 +70,9 @@ class Bootstrap
         SetPostMetaAction::class,
         SetTermNameAction::class,
         SetTermSlugAction::class,
+        SetTermTranslationAction::class,
+        SetTermDescriptionAction::class,
+        SetPostAuthorAction::class,
         DeletePostAction::class,
         GetPostTranslationsAction::class,
         GetPostThumbnailAction::class,

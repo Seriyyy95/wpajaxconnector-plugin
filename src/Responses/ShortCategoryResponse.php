@@ -8,6 +8,7 @@ class ShortCategoryResponse extends AbstractResponse
 {
     public function __construct(
         private readonly int $categoryId,
+        private readonly string $url,
     ) {}
 
     public function toArray(): array
@@ -15,6 +16,7 @@ class ShortCategoryResponse extends AbstractResponse
         return [
             'data' => [
                 'category_id' => $this->categoryId,
+                'url' => $this->url,
             ]
         ];
     }

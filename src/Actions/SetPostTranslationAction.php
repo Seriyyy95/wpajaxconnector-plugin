@@ -9,7 +9,7 @@ use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\AbstractResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\BadRequestResponse;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Responses\PostIdResponse;
 
-class SetPostTranslation extends AbstractAction
+class SetPostTranslationAction extends AbstractAction
 {
     public function getName(): string
     {

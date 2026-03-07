@@ -8,6 +8,7 @@ class TagResponse extends AbstractResponse
 {
     public function __construct(
         private readonly int $tagId,
+        private readonly string $url,
     ) {}
 
     public function toArray(): array
@@ -15,6 +16,7 @@ class TagResponse extends AbstractResponse
         return [
             'data' => [
                 'tag_id' => $this->tagId,
+                'url' => $this->url,
             ]
         ];
     }
