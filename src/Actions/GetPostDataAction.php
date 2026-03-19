@@ -31,6 +31,7 @@ class GetPostDataAction extends AbstractAction
 
         list($permalink, $postname) = get_sample_permalink($post_id);
         $url = str_replace('%postname%', $postname, $permalink);
+        $url = str_replace('%pagename%', $postname, $permalink);
 
         $categories = get_the_category($post->ID);
         if(count($categories) > 0){
