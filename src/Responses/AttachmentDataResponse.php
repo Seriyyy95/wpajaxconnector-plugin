@@ -23,6 +23,9 @@ class AttachmentDataResponse extends AbstractResponse
         $attachmentUrl = wp_get_attachment_url($attachmentId);
         $thumbnailUrl = wp_get_attachment_image_url($attachmentId, 'thumbnail');
         $largeUrl = wp_get_attachment_image_url($attachmentId, 'large');
+        if ($attachmentUrl === false) {
+            $attachmentUrl = null;
+        }
         if ($thumbnailUrl === false) {
             $thumbnailUrl = null;
         }
