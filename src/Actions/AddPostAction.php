@@ -27,6 +27,7 @@ class AddPostAction extends AbstractAction
 
         $postContent = $_REQUEST["post_content"] ?? '';
         $postTitle = $_REQUEST["post_title"];
+        $postType = $_REQUEST["post_type"] ?? null;
 
         $post_data = array(
             'post_title' => wp_strip_all_tags($postTitle),
@@ -34,6 +35,10 @@ class AddPostAction extends AbstractAction
             'post_status' => 'draft',
             'post_author' => $userId,
         );
+
+        if (null !== $postType) {
+            $post_data['post_type'] = $postType;
+        }
 
         $post_id = wp_insert_post($post_data);
 

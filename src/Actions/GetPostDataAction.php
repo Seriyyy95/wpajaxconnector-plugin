@@ -32,7 +32,13 @@ class GetPostDataAction extends AbstractAction
         list($permalink, $postname) = get_sample_permalink($post_id);
         $url = str_replace('%postname%', $postname, $permalink);
 
-        $category = get_the_category($post->ID)[0]->name;
+        $categories = get_the_category($post->ID);
+        if(count($categories) > 0){
+            $category = $categories[0]->name;
+        }else{
+            $category = null;
+        }
+
         $tags = [];
         foreach (wp_get_post_tags($post->ID) as $tag) {
             $tags[] = $tag->name;
