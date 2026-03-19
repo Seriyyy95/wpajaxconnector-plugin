@@ -17,7 +17,7 @@ class PostDataResponse extends AbstractResponse
         private readonly ?string $publishDate,
         private readonly ?string $lastModifiedDate,
         private readonly string  $postUrl,
-        private readonly string  $categoryName,
+        private readonly ?string  $categoryName,
         private readonly array   $tags,
         private readonly string  $author,
     ) {}
