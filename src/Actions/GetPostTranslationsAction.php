@@ -22,6 +22,7 @@ class GetPostTranslationsAction extends AbstractAction
         }
 
         $postId = $_REQUEST["post_id"] ?? null;
+        $postId = intval($postId);
 
         $options = msls_get_post($postId);
 
