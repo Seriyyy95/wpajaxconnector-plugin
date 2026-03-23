@@ -31,6 +31,10 @@ class SetPostTagsAction extends AbstractAction
         $postId = $_REQUEST['post_id'] ?? null;
         $tagIds = $_REQUEST['tag_ids'] ?? [];
 
+        foreach ($tagIds as $key => $tagId) {
+           $tagIds[$key] = intval($tagId);
+        }
+
         wp_set_post_tags($postId, $tagIds, false);
 
         return new PostIdResponse(intval($postId));
