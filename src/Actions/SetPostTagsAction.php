@@ -21,9 +21,7 @@ class SetPostTagsAction extends AbstractAction
         if (!isset($_REQUEST["post_id"])) {
             return new BadRequestResponse();
         }
-        if (!isset($_REQUEST["tag_ids"])) {
-            return new BadRequestResponse();
-        }
+
         if (!user_can($userId, 'edit_posts')) {
             return new PermissionDeniedResponse();
         }
