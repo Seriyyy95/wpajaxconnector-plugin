@@ -21,7 +21,7 @@ class SetPostTagsAction extends AbstractAction
         if (!isset($_REQUEST["post_id"])) {
             return new BadRequestResponse();
         }
-        if (!isset($_REQUEST["tag_names"])) {
+        if (!isset($_REQUEST["tag_ids"])) {
             return new BadRequestResponse();
         }
         if (!user_can($userId, 'edit_posts')) {
@@ -29,9 +29,9 @@ class SetPostTagsAction extends AbstractAction
         }
 
         $postId = $_REQUEST['post_id'] ?? null;
-        $tagNames = $_REQUEST['tag_names'] ?? [];
+        $tagIds = $_REQUEST['tag_ids'] ?? [];
 
-        wp_set_post_tags($postId, $tagNames, false);
+        wp_set_post_tags($postId, $tagIds, false);
 
         return new PostIdResponse(intval($postId));
     }
