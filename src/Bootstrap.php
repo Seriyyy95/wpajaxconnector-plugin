@@ -26,6 +26,7 @@ use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostCategoryAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostContentAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostMetaAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostParentAction;
+use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostStatusAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTagsAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostTranslationAction;
 use WPAjaxConnector\WPAjaxConnectorPlugin\Actions\SetPostThumbnailAction;
@@ -73,6 +74,7 @@ class Bootstrap
         SetTermTranslationAction::class,
         SetTermDescriptionAction::class,
         SetPostAuthorAction::class,
+        SetPostStatusAction::class,
         DeletePostAction::class,
         GetPostTranslationsAction::class,
         GetPostThumbnailAction::class,
